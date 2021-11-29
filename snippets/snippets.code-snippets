@@ -1,0 +1,639 @@
+{
+
+  //*******************************************
+  // REACT and frontend
+  //*******************************************
+  "React component": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "rcomp",
+    "body": [
+      "function ${1:Name}(props){",
+      "\treturn (",
+      "\t\t<div>${0}</div>",
+      "\t);",
+      "};",
+      "\nexport default ${1}"
+    ],
+    "description": "Class that represents a react component"
+  },
+  "Umd module creation": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "umd",
+    "body": [
+      "(function umd(root,${1:factory}){",
+      "\tif(typeof module==='object' && typeof exports === 'object' )",
+      "\t\tmodule.export=${1:factory}()",
+      "\telse if(typeof define==='function' && define.amd)",
+      "\t\tdefine([],${1:factory})",
+      "\telse",
+      "\t\troot.httpVueLoader=${1:factory}()",
+      "})(this,function ${1:factory}() {",
+      "\t'use strict'",
+      "\t${2}",
+      "})"
+    ],
+    "description": "Umd module creation"
+  },
+
+  //*******************************************
+  // Testing
+  //*******************************************
+  "mocha test file": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "mtest",
+    "body": [
+      "const {assert} = require('chai');",
+      "const ${1:${TM_FILENAME_BASE/(.*)\\..+$/$1/}} = require('./${1:${TM_FILENAME_BASE/(.*)\\..+$/$1/}}.js');",
+      "",
+      "describe('${1:${TM_FILENAME_BASE/(.*)\\..+$/$1/}}', function() {",
+      "   ${0}",
+      "});"
+    ],
+    "description": "Genera un archivo de test"
+  },
+  "Test describe": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "desc",
+    "body": [
+      "describe('${1:description}', () => {",
+      "\t${0}",
+      "});"
+    ],
+    "description": "Test describe"
+  },
+  "Test it asynchronous": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ita",
+    "body": [
+      "it('${1:description}', done => {",
+      "\t${0}",
+      "});"
+    ],
+    "description": "Test it asynchronous"
+  },
+  "Test it synchronous": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "its",
+    "body": [
+      "it('${1:description}', () => {",
+      "\t${0}",
+      "});"
+    ],
+    "description": "Test it synchronous"
+  },
+  "Test it empty": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "it",
+    "body": [
+      "it('${0:description}');"
+    ],
+    "description": "Test it empty"
+  },
+
+  //*******************************************
+  // Common JS
+  //*******************************************
+  "require": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "re",
+    "body": [
+      "require('${1:module}')$0"
+    ],
+    "description": "require"
+  },
+  "CommonJS Require": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "req",
+    "body": [
+      "const ${1} = require('${2:$1}')${0:;}"
+    ],
+    "description": "CommonJS Require"
+  },
+  "module.exports": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "me",
+    "body": [
+      "module.exports = ${0:name};"
+    ],
+    "description": "module.exports"
+  },
+
+  //*******************************************
+  // Console
+  //*******************************************
+  "console.dir": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "cd",
+    "body": [
+      "console.dir(${1:obj});"
+    ],
+    "description": "console.dir"
+  },
+  "console.error": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ce",
+    "body": [
+      "console.error(${1:obj});"
+    ],
+    "description": "console.error"
+  },
+  "console.log": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "cl",
+    "body": [
+      "console.log(${1:$CLIPBOARD})"
+    ],
+    "description": "console.log"
+  },
+  "console.warn": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "cw",
+    "body": [
+      "console.warn(${1:obj});"
+    ],
+    "description": "console.warn"
+  },
+  "util inspect": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "insp",
+    "body": [
+      "util.inspect(${1:myObject}, false, null)${2}"
+    ],
+    "description": ""
+  },
+
+  //*******************************************
+  // Loops
+  //*******************************************
+  "forEach": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "fe",
+    "body": [
+      "${1:myArray}.forEach(function(${2:elem}) {",
+      "\t${3}",
+      "});"
+    ],
+    "description": "forEach"
+  },
+  "for in": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "fi",
+    "body": [
+      "for (const ${1:prop} in ${2:obj}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for in"
+  },
+  "for of": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "fo",
+    "body": [
+      "for (const ${1:prop} of ${2:obj}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for of"
+  },
+
+  //*******************************************
+  // Function 
+  //*******************************************
+  "immediately-invoked function expression": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "iife",
+    "body": [
+      "(function(${1}) {",
+      "\t${3}",
+      "})(${2});"
+    ],
+    "description": "immediately-invoked function expression"
+  },
+  "anonymous function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "afn",
+    "body": [
+      "${1:()} => ${0}",
+    ],
+    "description": "anonymous function"
+  },
+  "function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "fn",
+    "body": [
+      "function ${1:methodName}(${2:arguments}) {",
+      "\t${3}",
+      "}"
+    ],
+    "description": "function"
+  },
+  
+  //*******************************************
+  // Timers
+  //*******************************************
+  "setInterval": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "si",
+    "body": [
+      "setInterval(${2}, ${1:delay});"
+    ],
+    "description": "setInterval"
+  },
+  "setImmediate": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "sim",
+    "body": [
+      "setImmediate(${2});"
+    ],
+    "description": "setInterval"
+  },
+  "setTimeout": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "st",
+    "body": [
+      "setTimeout(${2}, ${1:delay});"
+    ],
+    "description": "setTimeout"
+  },
+
+  //*******************************************
+  // JSON
+  //*******************************************
+  "Json Stringify": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "str",
+    "body": [
+      "JSON.stringify(${1:$CLIPBOARD})"
+    ],
+    "description": "Json stringify"
+  },
+  "Json Parse": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "parse",
+    "body": [
+      "JSON.parse(${1:$CLIPBOARD})"
+    ],
+    "description": "Json parse"
+  },
+
+  //*******************************************
+  // ESLINT
+  //*******************************************
+  "eslint ignore-line": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "eslinti",
+    "body": [
+      "// eslint-disable-line ${0:no-console}"
+    ],
+    "description": "Umd module creation"
+  },
+  
+  //*******************************************
+  // Quokka / Wallaby
+  //*******************************************
+  "quokka instpect": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ql",
+    "body": [
+      "//?"
+    ],
+    "description": "Umd module creation"
+  },
+  "quokka instpect time": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ql.",
+    "body": [
+      "//?."
+    ],
+    "description": "Umd module creation"
+  },
+  "Wallaby Config": {
+    "prefix": "walla",
+    "body": [
+      "module.exports = function () {",
+      "    process.env.NODE_ENV = 'test';",
+      "    return {",
+      "    files: [",
+      "        'utils/*.js',",
+      "        'server/{,**/}*.js',",
+      "        'server/{,**/}*.json',",
+      "        'modules/{,**/}*.js',",
+      "        'modules/{,**/}*.json',",
+      "        'modules/{,**/}*.yaml',",
+      "        { pattern: '{,**/}*.test.js', ignore: true },",
+      "        { pattern: 'wallaby.conf.js', ignore: true },",
+      "    ],",
+      "    tests: [",
+      "        'utils/*.test.js',",
+      "        'server/{,**/}*.test.js',",
+      "        'modules/{,**/}*.test.js',",
+      "    ],",
+      "    env: {",
+      "        type: 'node'",
+      "    },",
+      "    testFramework: 'mocha',",
+      "    runMode: 'onsave'",
+      "    };",
+      "};"
+    ]
+  },
+  
+  //*******************************************
+  // Functional Programming
+  //*******************************************
+  "Function Log": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "fl",
+    "body": [
+      "x=> { console.log('$0', x); return x; },"
+    ],
+    "description": "Genera un Map log para programacion funcional"
+  },
+  "Map Log": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ml",
+    "body": [
+      ".map(x=> { console.log('$0', x); return x; }) "
+    ],
+    "description": "Genera un Map log para programacion funcional"
+  },
+  "Then Log": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "tl",
+    "body": [
+      ".then(x=> { console.log('$0', x); return x; }) "
+    ],
+    "description": "Genera un Map log para programacion funcional"
+  },
+
+  //*******************************************
+  // Comments
+  //*******************************************
+  "Section": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "ssec",
+    "body": [
+      "//*******************************************",
+      "// ${0}",
+      "//*******************************************"
+    ],
+    "description": "Genera un Map log para programacion funcional"
+  },
+
+  //*******************************************
+  // PV2
+  //*******************************************
+  
+  "manager": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "manager",
+    "body": [
+      "import {AppServiceParams} from 'src/types';",
+      "",
+      "export function create(params: AppServiceParams) {",
+      "  $0",
+      "}",
+    ],
+    "description": "Genera un archivo de test"
+  },
+  "aggregate": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "aggregate",
+    "body": [
+      "import { Aggregate, createError } from '@bett3r-dev/server-core';",
+      "import { Async } from '@bett3r-dev/crocks';",
+      "import { AppServiceParams } from 'src/types';",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
+      "",
+      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Aggregate = ({serverComponents}: AppServiceParams) : Aggregate<${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events> => {",
+      "  const {eventsourcing: {createEvent}} = serverComponents;",
+      "  return ({",
+      "    name: '${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}',",
+      "    eventReducers: {},",
+      "    commandHandlers: {}",
+      "  })",
+      "}",
+    ],
+    "description": "Genera un aggregate starter"
+  },
+  "system": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "system",
+    "body": [
+      "import { System } from '@bett3r-dev/server-core';",
+      "import { Async } from '@bett3r-dev/crocks';",
+      "import { AppServiceParams } from 'src/types';",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
+      "",
+      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}System = ({serverComponents, u}: AppServiceParams) : System<typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands> => {",
+      "  return ({",
+      "    name: '${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}',",
+      "    commandHandlers: {}",
+      "  })",
+      "}",
+    ],
+    "description": "Genera un system starter"
+  },
+  "policy": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "policy",
+    "body": [
+      "import { Policy } from '@bett3r-dev/server-core';",
+      "import { Async } from '@bett3r-dev/crocks';",
+      "import { AppServiceParams } from 'src/types';",
+      "import { ${TM_DIRECTORY/.*\\/(.*)/${1:/capitalize}/g}Aggregate } from './${TM_DIRECTORY/.*\\/(.*)/$1/g}.aggregate'",
+      "import { ${TM_DIRECTORY/.*\\/(.*)/${1:/capitalize}/g}Events, ${TM_DIRECTORY/.*\\/(.*)/${1:/capitalize}/g}Commands } from 'src/domain'",
+      "",
+      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Policy = (params: AppServiceParams) : Policy<typeof ${TM_DIRECTORY/.*\\/(.*)/${1:/capitalize}/g}Events> => {",
+      "  const {serverComponents, u} = params;",
+      "  const {eventsourcing: {createCommand}} = serverComponents;",
+      "",
+      "  return ({",
+      "    name: '${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}',",
+      "    commandHandler: ${TM_DIRECTORY/.*\\/(.*)/${1:/capitalize}/g}Aggregate(params),",
+      "    eventHandlers: {}",
+      "  })",
+      "}",
+    ],
+    "description": "Genera un policy starter"
+  },
+  "projector": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "projector",
+    "body": [
+      "import { Projector, CommittedEvent } from '@bett3r-dev/server-core';",
+      "import { Async } from '@bett3r-dev/crocks';",
+      "import { AppServiceParams } from 'src/types';",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events } from 'src/domain'",
+      "",
+      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Projector = (params: AppServiceParams) : Projector<typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events> => {",
+      "  const {serverComponents, u} = params;",
+      "",
+      "  return ({",
+      "    name: '${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}',",
+      "    eventProjectors: {}",
+      "  })",
+      "}",
+    ],
+    "description": "Genera un projector starter"
+  },
+  "event": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "event",
+    "body": [
+      "export const ${1:event}: Event<${2}> = () => ({",
+      "  schema: ${2}Schema",
+      "})",
+    ],
+    "description": "Genera un event"
+  },
+  "command": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "command",
+    "body": [
+      "export const ${1:command}: Command<${2}> = () => ({",
+      "  schema: ${2}Schema,",
+      "  isPublic: ${3:true}",
+      "})",
+    ],
+    "description": "Genera un Command"
+  },
+  "error": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "error",
+    "body": [
+      "export const ${1:error}: AppError<${2:string[]}> = () => ({",
+      "  schema: ${3:joi.array().items(joi.string())},",
+      "  type: '${4:BadRequestError}',",
+      "})",
+    ],
+    "description": "Genera un Error"
+  },
+  "Event Reducer": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "eventr",
+    "body": [
+      "(state, data) => ({...state, ...data}),"
+    ],
+    "description": "Genera un EventReducer"
+  },
+  "Command Handler": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "commandh",
+    "body": [
+      "(state, data) =>",
+      "  Async.of({events:[createEvent(${1:event}, data)]}),"
+    ],
+    "description": "Genera un EventReducer"
+  },
+  "Event Handler": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "eventh",
+    "body": [
+      "(event) =>",
+      "    Async.of({",
+      "        id: event.metadata.id,",
+      "        command: createCommand(${1:command}, event.data)",
+      "    })",
+    ],
+    "description": "Genera un EventReducer"
+  },
+
+  //*******************************************
+  // Snippet Documentation
+  //*******************************************
+  "VarReference": {
+    "prefix": "VarReference",
+    "body": [
+      "https://code.visualstudio.com/docs/editor/userdefinedsnippets",
+      "",
+      "${LINE_COMMENT} Variables:",
+      "",
+      "\"\\${TM_SELECTED_TEXT}\": ${TM_SELECTED_TEXT}",
+      "\"\\${TM_CURRENT_LINE}\": ${TM_CURRENT_LINE}",
+      "\"\\${TM_CURRENT_WORD}\": ${TM_CURRENT_WORD}",
+      "\"\\${TM_LINE_INDEX}\": ${TM_LINE_INDEX}",
+      "\"\\${TM_LINE_NUMBER}\": ${TM_LINE_NUMBER}",
+      "\"\\${TM_FILENAME}\": ${TM_FILENAME}",
+      "\"\\${TM_FILENAME_BASE}\": ${TM_FILENAME_BASE}",
+      "\"\\${TM_DIRECTORY}\": ${TM_DIRECTORY}",
+      "\"\\${TM_FILEPATH}\": ${TM_FILEPATH}",
+      "\"\\${RELATIVE_FILEPATH}\": ${RELATIVE_FILEPATH}",
+      "\"\\${CLIPBOARD}\": ${CLIPBOARD}",
+      "\"\\${WORKSPACE_NAME}\": ${WORKSPACE_NAME}",
+      "\"\\${WORKSPACE_FOLDER}\": ${WORKSPACE_FOLDER}",
+      "",
+      "${LINE_COMMENT} For inserting the current date and time:",
+      "",
+      "\"\\${CURRENT_YEAR}\": ${CURRENT_YEAR}",
+      "\"\\${CURRENT_YEAR_SHORT}\": ${CURRENT_YEAR_SHORT}",
+      "\"\\${CURRENT_MONTH}\": ${CURRENT_MONTH}",
+      "\"\\${CURRENT_MONTH_NAME}\": ${CURRENT_MONTH_NAME}",
+      "\"\\${CURRENT_MONTH_NAME_SHORT}\": ${CURRENT_MONTH_NAME_SHORT}",
+      "\"\\${CURRENT_DATE}\": ${CURRENT_DATE}",
+      "\"\\${CURRENT_DAY_NAME}\": ${CURRENT_DAY_NAME}",
+      "\"\\${CURRENT_DAY_NAME_SHORT}\": ${CURRENT_DAY_NAME_SHORT}",
+      "\"\\${CURRENT_HOUR}\": ${CURRENT_HOUR}",
+      "\"\\${CURRENT_MINUTE}\": ${CURRENT_MINUTE}",
+      "\"\\${CURRENT_SECOND}\": ${CURRENT_SECOND}",
+      "\"\\${CURRENT_SECONDS_UNIX}\": ${CURRENT_SECONDS_UNIX}",
+      "",
+      "${LINE_COMMENT} For inserting random values:",
+      "",
+      "\"\\${RANDOM}\": ${RANDOM}",
+      "\"\\${RANDOM_HEX}\": ${RANDOM_HEX}",
+      "\"\\${UUID}\": ${UUID}",
+      "",
+      "${LINE_COMMENT} For inserting line or block comments, honoring the current language:",
+      "",
+      "\"\\${BLOCK_COMMENT_START}\": ${BLOCK_COMMENT_START}",
+      "\"\\${BLOCK_COMMENT_END}\": ${BLOCK_COMMENT_END}",
+      "\"\\${LINE_COMMENT}\": ${LINE_COMMENT}",
+      "",
+      "${LINE_COMMENT} Variables Transform:",
+      "",
+      "\"\\${TM_FILENAME/(.*)\\..+$/$1/}\"",
+      "|           |         |  |",
+      "|           |         |  |-> no options",
+      "|           |         |",
+      "|           |         |-> references the contents of the first",
+      "|           |             capture group",
+      "|           |",
+      "|           |-> regex to capture everything before",
+      "|               the final `.suffix`",
+      "|",
+      "|-> resolves to the filename",
+      "",
+      "${LINE_COMMENT} Transform Examples for a file example-123.456-TEST.js",
+      "",
+      "\"\\${TM_FILENAME/[\\.]/_/}\"\t\t\t\t\t\texample-123_456-TEST.js\t\t\tReplace the first . with _",
+      "\"\\${TM_FILENAME/[\\.-]/_/g}\"\t\t\t\t\texample_123_456_TEST_js\t\t\tReplace each . or - with _",
+      "\"\\${TM_FILENAME/(.*)/${1:/upcase}/}\"\t\t\tEXAMPLE-123.456-TEST.JS\t\t\tChange to all uppercase",
+      "\"\\${TM_FILENAME/[^0-9^a-z]//gi}\"\t\texample123456TESTjs\t\t\t\t\tRemove non-alphanumeric characters",
+      "",
+      "${LINE_COMMENT} GRAMAR:",
+      "",
+      "any         ::= tabstop | placeholder | choice | variable | text",
+      "tabstop     ::= '$' int",
+      "                | '${' int '}'",
+      "                | '${' int  transform '}'",
+      "placeholder ::= '${' int ':' any '}'",
+      "choice      ::= '${' int '|' text (',' text)* '|}'",
+      "variable    ::= '$' var | '${' var '}'",
+      "                | '${' var ':' any '}'",
+      "                | '${' var transform '}'",
+      "transform   ::= '/' regex '/' (format | text)+ '/' options",
+      "format      ::= '$' int | '${' int '}'",
+      "                | '${' int ':' '/upcase' | '/downcase' | '/capitalize' | '/camelcase' | '/pascalcase' '}'",
+      "                | '${' int ':+' if '}'",
+      "                | '${' int ':?' if ':' else '}'",
+      "                | '${' int ':-' else '}' | '${' int ':' else '}'",
+      "regex       ::= JavaScript Regular Expression value (ctor-string)",
+      "options     ::= JavaScript Regular Expression option (ctor-options)",
+      "var         ::= [_a-zA-Z] [_a-zA-Z0-9]*",
+      "int         ::= [0-9]+",
+      "text        ::= .*",
+    ],
+    "description": "Da una referencia de las posibles variables para su uso en la construcción de snippets"
+  },
+}
