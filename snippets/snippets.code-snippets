@@ -396,6 +396,22 @@
     ],
     "description": "Genera un archivo de test"
   },
+  "Register Endpoint": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "endpoint",
+    "body": [
+      "endpoint.registerEndpoint({",
+      "  module: '${1}',",
+      "  name: 'Read ${1}s',",
+      "  description: 'Reads ${1}s',",
+      "  route: '/${1}',",
+      "  method: 'GET',",
+      "  isHttp: true,",
+      "  action: ({body, params, query}) => Async.of({body, params, query}) ",
+      "})",
+    ],
+    "description": "Genera un Command Handler"
+  },
   "aggregate": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
     "prefix": "aggregate",
