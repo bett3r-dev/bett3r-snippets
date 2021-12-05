@@ -2,14 +2,14 @@
     "name": "bett3r-snippets",
     "displayName": "bett3r-snippets",
     "description": "bett3r-dev/PV2, and general JS/TS snippets",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.62.0"
     },
     "publisher": "tomasruizr",
     "repository": {
-      "type": "git",
-      "url": "git@github.com:bett3r-dev/bett3r-snippets.git"
+        "type": "git",
+        "url": "git@github.com:bett3r-dev/bett3r-snippets.git"
     },
     "categories": [
         "Snippets"
@@ -19,22 +19,27 @@
             {
                 "language": "javascript",
                 "path": "./snippets/snippets.code-snippets"
-              }, {
+            },
+            {
                 "language": "typescript",
                 "path": "./snippets/snippets.code-snippets"
-              }, {
+            },
+            {
                 "language": "javascriptreact",
                 "path": "./snippets/snippets.code-snippets"
-              }, {
+            },
+            {
                 "language": "typescriptreact",
                 "path": "./snippets/snippets.code-snippets"
-              }, {
+            },
+            {
                 "language": "html",
                 "path": "./snippets/snippets.code-snippets"
-              }, {
+            },
+            {
                 "language": "vue",
                 "path": "./snippets/snippets.code-snippets"
-              }
+            }
         ]
     }
 }
