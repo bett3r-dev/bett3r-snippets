@@ -524,7 +524,7 @@
       "(state, data) =>",
       "  Async.of({events:[createEvent(${1:event}, data)]}),"
     ],
-    "description": "Genera un EventReducer"
+    "description": "Genera un Command Handler"
   },
   "Event Handler": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
@@ -536,7 +536,16 @@
       "        command: createCommand(${1:command}, event.data)",
       "    })",
     ],
-    "description": "Genera un EventReducer"
+    "description": "Genera un EventHandler"
+  },
+  "Event Projector": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "eventp",
+    "body": [
+      "(event) =>",
+      "    Async.of(undefined)",
+    ],
+    "description": "Genera un EventProjector"
   },
 
   //*******************************************

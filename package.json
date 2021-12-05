@@ -6,6 +6,11 @@
     "engines": {
         "vscode": "^1.62.0"
     },
+    "publisher": "tomasruizr",
+    "repository": {
+      "type": "git",
+      "url": "git@github.com:bett3r-dev/bett3r-snippets.git"
+    },
     "categories": [
         "Snippets"
     ],
