@@ -3,6 +3,9 @@
     "displayName": "bett3r-snippets",
     "description": "bett3r-dev/PV2, and general JS/TS snippets",
     "version": "0.0.3",
+    "scripts": {
+        "release": "vsce publish"
+    },
     "engines": {
         "vscode": "^1.62.0"
     },
