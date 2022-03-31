@@ -89,6 +89,14 @@
     ],
     "description": "Test it empty"
   },
+  "Coverage ignore": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,vue",
+    "prefix": "covi",
+    "body": [
+      "/* istanbul ignore next */"
+    ],
+    "description": "Ignora una linea en el coverage"
+  },
 
   //*******************************************
   // Common JS
@@ -381,6 +389,24 @@
   },
 
   //*******************************************
+  // Utils
+  //*******************************************
+  "UUID": {
+    "prefix": "uuid",
+    "body": [
+      "${UUID}"
+    ],
+    "description": "Genera un UUID"
+  },
+  "String UUID": {
+    "prefix": "suuid",
+    "body": [
+      "\"${UUID}\""
+    ],
+    "description": "Genera un UUID"
+  },
+  
+  //*******************************************
   // PV2
   //*******************************************
   
@@ -402,11 +428,12 @@
     "body": [
       "endpoint.registerEndpoint({",
       "  module: '${1}',",
-      "  name: 'Read ${1}s',",
-      "  description: 'Reads ${1}s',",
+      "  name: '${1}',",
+      "  description: '${1}',",
       "  route: '/${1}',",
       "  method: 'GET',",
       "  isHttp: true,",
+      "  requiresAuth: true,",
       "  action: ({body, params, query}) => Async.of({body, params, query}) ",
       "})",
     ],
@@ -419,9 +446,9 @@
       "import { Aggregate, createError } from '@bett3r-dev/server-core';",
       "import { Async } from '@bett3r-dev/crocks';",
       "import { AppServiceParams } from 'src/types';",
-      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Types, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
       "",
-      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Aggregate = ({serverComponents}: AppServiceParams) : Aggregate<${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events> => {",
+      "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Aggregate = ({serverComponents}: AppServiceParams) : Aggregate<${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Types, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events> => {",
       "  const {eventsourcing: {createEvent}} = serverComponents;",
       "  return ({",
       "    name: '${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}',",
@@ -439,7 +466,7 @@
       "import { System } from '@bett3r-dev/server-core';",
       "import { Async } from '@bett3r-dev/crocks';",
       "import { AppServiceParams } from 'src/types';",
-      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Types, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Errors } from 'src/domain'",
       "",
       "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}System = ({serverComponents, u}: AppServiceParams) : System<typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Commands> => {",
       "  return ({",
@@ -480,7 +507,7 @@
       "import { Projector, CommittedEvent } from '@bett3r-dev/server-core';",
       "import { Async } from '@bett3r-dev/crocks';",
       "import { AppServiceParams } from 'src/types';",
-      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Model, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events } from 'src/domain'",
+      "import { ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Types, ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events } from 'src/domain'",
       "",
       "export const ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Projector = (params: AppServiceParams) : Projector<typeof ${TM_FILENAME_BASE/(.+?)\\..*/${1:/capitalize}/g}Events> => {",
       "  const {serverComponents, u} = params;",
@@ -498,7 +525,8 @@
     "prefix": "event",
     "body": [
       "export const ${1:event}: Event<${2}> = () => ({",
-      "  schema: ${2}Schema",
+      "  schema: ${2}Schema,",
+      "  description: ${3}",
       "})",
     ],
     "description": "Genera un event"
@@ -509,7 +537,7 @@
     "body": [
       "export const ${1:command}: Command<${2}> = () => ({",
       "  schema: ${2}Schema,",
-      "  isPublic: ${3:true}",
+      "  requiresAuth: ${3:true}",
       "})",
     ],
     "description": "Genera un Command"
@@ -538,7 +566,7 @@
     "prefix": "commandh",
     "body": [
       "(state, data) =>",
-      "  Async.of({events:[createEvent(${1:event}, data)]}),"
+      "  Async.of([createEvent(${1:event}, data)]),"
     ],
     "description": "Genera un Command Handler"
   },
